@@ -1,0 +1,40 @@
+{
+  "id": "mock-doc-id",
+  "url": null,
+  "type": "posts",
+  "href": null,
+  "tags": [],
+  "first_publication_date": "1970-01-01T00:00:01+0000",
+  "last_publication_date": "1970-01-01T00:00:01+0000",
+  "slugs": [],
+  "linked_documents": [],
+  "lang": "en-us",
+  "alternate_languages": [],
+  "data": {
+    "title": "struggle",
+    "subtitle": "railroad",
+    "author": "pink",
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": null,
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1606248897732-2c5ffe759c04"
+    },
+    "content": [
+      {
+        "heading": "studying",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Ipsum consequat minim exercitation enim non ex ullamco sit velit esse dolor laborum fugiat officia fugiat.",
+            "spans": []
+          }
+        ]
+      }
+    ],
+    "slices": []
+  }
+}
