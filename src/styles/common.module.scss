@@ -1,1 +1,17 @@
-// TODO
+.details,
+.detail {
+  display: flex;
+  align-items: center;
+}
+
+.detail {
+  font-size: .875rem;
+
+  +.detail {
+    margin-left: 1.5rem;
+  }
+
+  &Text {
+    padding-left: .5rem;
+  }
+}
