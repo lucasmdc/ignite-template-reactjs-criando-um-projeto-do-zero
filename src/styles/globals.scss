@@ -16,6 +16,8 @@
   --gray-800: #343a40;
   --gray-900: #212529;
   --black: #000000;
+
+  --primary--text: #FF57B2
 }
 
 // TODO
@@ -30,4 +32,54 @@ textarea,
 select,
 button {
   font: 400 1rem "Inter", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 3rem;
+}
+
+h2 {
+  font-size: 2.625rem;
+}
+
+h3 {
+  font-size: 2.25rem;
+}
+
+h4 {
+  font-size: 1.875rem;
+}
+
+h5 {
+  font-size: 1.5rem;
+}
+
+h6 {
+  font-size: 1.125rem;
+}
+
+p,
+li {
+  font-size: 1.125rem;
+}
+
+a {
+  transition: .2s filter;
+  text-decoration: none;
+  color: var(--primary--text);
+
+  &:active,
+  &:hover,
+  &:visited {
+    filter: brightness(.9);
+  }
 }
