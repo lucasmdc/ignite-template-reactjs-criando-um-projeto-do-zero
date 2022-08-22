@@ -73,13 +73,13 @@ li {
 }
 
 a {
+  color: inherit;
   transition: .2s filter;
   text-decoration: none;
-  color: var(--primary--text);
 
   &:active,
   &:hover,
   &:visited {
-    filter: brightness(.9);
+    filter: brightness(.84);
   }
 }
