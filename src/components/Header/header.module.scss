@@ -1,1 +1,13 @@
 // TODO
+.container {
+  height: 105px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.content {
+  flex-basis: 720px;
+  padding: 0 1rem;
+}
