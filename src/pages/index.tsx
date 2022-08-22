@@ -40,18 +40,23 @@ export default function Home(): JSX.Element {
               <p className={styles.subtitle}>
                 Pensando em sincronização em vez de ciclos de vida.
               </p>
-              <div className={styles.details}>
-                <span className={styles.detail}>
+              <p className={commonStyles.details}>
+                <span className={commonStyles.detail}>
                   <FiCalendar size={20} />
-                  <time className={styles.detailText} dateTime="2021-03-15">
+                  <time
+                    className={commonStyles.detailText}
+                    dateTime="2021-03-15"
+                  >
                     15 Mar 2021
                   </time>
                 </span>
-                <span className={styles.detail}>
+                <span className={commonStyles.detail}>
                   <FiUser size={20} />
-                  <span className={styles.detailText}>Joseph Oliveira</span>
+                  <span className={commonStyles.detailText}>
+                    Joseph Oliveira
+                  </span>
                 </span>
-              </div>
+              </p>
             </dd>
           </dl>
         </a>
