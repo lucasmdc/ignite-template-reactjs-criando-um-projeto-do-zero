@@ -1,5 +1,6 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Head from 'next/head';
+import { useRouter } from 'next/router';
 import { FiCalendar, FiClock, FiUser } from 'react-icons/fi';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
@@ -33,6 +34,11 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps): JSX.Element {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <h1>Carregando...</h1>;
+  }
   const first_publication_date = format(
     new Date(post.first_publication_date),
     'd MMM yyyy',
@@ -90,13 +96,24 @@ export default function Post({ post }: PostProps): JSX.Element {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  // const prismic = getPrismicClient({});
-  // const posts = await prismic.getByType(TODO);
+  const prismic = getPrismicClient({});
+  const posts = await prismic.getByType('posts', {
+    orderings: {
+      field: 'document.first_publication_date',
+      direction: 'asc',
+    },
+    pageSize: 2,
+    page: 0,
+  });
+
+  const paths = posts.results.map(({ uid }) => ({
+    params: { slug: uid },
+  }));
 
   // TODO
   return {
-    paths: [],
-    fallback: 'blocking',
+    paths,
+    fallback: true,
   };
 };
 
