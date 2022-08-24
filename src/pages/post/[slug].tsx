@@ -4,6 +4,7 @@ import { FiCalendar, FiClock, FiUser } from 'react-icons/fi';
 import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 import * as PrismicHelpers from '@prismicio/helpers';
+import { RichTextField } from '@prismicio/types';
 
 import { getPrismicClient } from '../../services/prismic';
 
@@ -32,6 +33,17 @@ interface PostProps {
 }
 
 export default function Post({ post }: PostProps): JSX.Element {
+  const first_publication_date = format(
+    new Date(post.first_publication_date),
+    'd MMM yyyy',
+    { locale: ptBR }
+  );
+
+  const content = post.data.content.map(section => ({
+    title: section.heading,
+    text: PrismicHelpers.asHTML(section.body as RichTextField),
+  }));
+
   return (
     <>
       <Head>[título_do_blog] | spacetraveling.</Head>
@@ -47,7 +59,7 @@ export default function Post({ post }: PostProps): JSX.Element {
                 <span className={commonStyles.detail}>
                   <FiCalendar size={20} />
                   <time className={commonStyles.detailText}>
-                    {post.first_publication_date}
+                    {first_publication_date}
                   </time>
                 </span>
                 <span className={commonStyles.detail}>
@@ -63,12 +75,10 @@ export default function Post({ post }: PostProps): JSX.Element {
               </p>
             </div>
             <div>
-              {post.data.content.map(text => (
-                <div key={text.heading}>
-                  <h3>{text.heading}</h3>
-                  <div
-                    dangerouslySetInnerHTML={{ __html: text.body[0].text }}
-                  />
+              {content.map(section => (
+                <div key={section.title}>
+                  <h3>{section.title}</h3>
+                  <div dangerouslySetInnerHTML={{ __html: section.text }} />
                 </div>
               ))}
             </div>
@@ -95,33 +105,22 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   const prismic = getPrismicClient({});
   const response = await prismic.getByUID('posts', String(slug));
 
-  const first_publication_date = format(
-    new Date(response.first_publication_date),
-    'd MMM yyyy',
-    { locale: ptBR }
-  );
-
-  const content = response.data.content.map(section => ({
-    heading: section.heading,
-    body: [
-      {
-        text: PrismicHelpers.asHTML(section.body),
-      },
-    ],
-  }));
+  const { uid, first_publication_date } = response;
 
   const data = {
     title: response.data.title,
+    subtitle: response.data.subtitle,
     banner: {
       url: response.data.banner.url,
     },
     author: response.data.author,
-    content,
+    content: response.data.content,
   };
 
   return {
     props: {
       post: {
+        uid,
         first_publication_date,
         data,
       },
