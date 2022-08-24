@@ -83,3 +83,17 @@ a {
     filter: brightness(.84);
   }
 }
+
+button {
+  background-color: transparent;
+  transition: .2s filter;
+  cursor: pointer;
+  outline: none;
+  border: none;
+
+  &:active,
+  &:hover,
+  &:visited {
+    filter: brightness(.84);
+  }
+}
