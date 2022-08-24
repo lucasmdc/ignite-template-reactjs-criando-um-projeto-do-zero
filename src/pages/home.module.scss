@@ -3,6 +3,12 @@
   max-width: 720px;
   margin: 0 auto;
   padding: 0 1rem;
+
+  button {
+    color: var(--primary--text);
+    font-weight: 600;
+    font-size: 1.125rem;
+  }
 }
 
 .box {

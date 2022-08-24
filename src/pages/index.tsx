@@ -66,6 +66,7 @@ export default function Home({ postsPagination }: HomeProps): JSX.Element {
             </a>
           </Link>
         ))}
+        <button type="button">Carregar mais posts</button>
       </main>
     </>
   );
