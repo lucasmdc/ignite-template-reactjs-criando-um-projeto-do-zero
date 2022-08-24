@@ -75,7 +75,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({});
   const postsResponse = await prismic.getByType('posts');
 
-  const next_page = { postsResponse };
+  const { next_page } = postsResponse;
   const results = postsResponse.results.map(post => ({
     uid: post.uid,
     first_publication_date: post.first_publication_date,
