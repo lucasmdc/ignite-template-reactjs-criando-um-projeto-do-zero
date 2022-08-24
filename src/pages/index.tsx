@@ -7,7 +7,7 @@ import { format } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR';
 
 import { useState } from 'react';
-import { PrismicDocument, Query } from '@prismicio/types';
+import { Query } from '@prismicio/types';
 import { getPrismicClient } from '../services/prismic';
 
 import commonStyles from '../styles/common.module.scss';
@@ -106,7 +106,7 @@ export const getStaticProps: GetStaticProps = async () => {
       field: 'document.first_publication_date',
       direction: 'desc',
     },
-    pageSize: 2,
+    pageSize: 1,
   });
 
   const { next_page } = postsResponse;
@@ -119,7 +119,7 @@ export const getStaticProps: GetStaticProps = async () => {
       author: post.data.author,
     },
   }));
-  console.log('next_page:', next_page);
+
   return {
     props: {
       postsPagination: {
